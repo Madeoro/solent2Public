@@ -5,11 +5,15 @@
  */
 package solent.ac.uk.ood.examples.hotellock.reception.test;
 
+import java.util.Date;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import solent.ac.uk.ood.examples.hotellock.model.CardKey;
+import solent.ac.uk.ood.examples.hotellock.model.SecretKeyProvider;
+import solent.ac.uk.ood.examples.hotellock.secretkey.SecretKeyProviderImpl;
 
 /**
  *
@@ -23,21 +27,27 @@ public class LoggingMessagesTest {
     
     @Test
     public void hello() {
-       
-        
-        
-        
-        
-        
-        
-        
-        
-        LOG.debug("JUST SAYING HELLO DEBUG MESSAGE");
-        LOG.warn("JUST SAYING HELLO WARN MESSAGE");
-        LOG.info("JUST SAYING HELLO INFO MESSAGE");
         try {
-            throw new RuntimeException("this is a test exception deliberately thrown");
-        } catch (Exception ex) {
+           
+        String roomNumber = "100a";
+        int issueNumber = 01;
+        Date startDate = new Date();
+        Date endDate = new Date(startDate.getTime() + 1000 * 60 * 60 * 24); // 1 day later
+         
+        CardKey cardKey = new CardKey();
+        cardKey.setRoomNumber(roomNumber);
+        cardKey.setIssueNumber(issueNumber);
+        cardKey.setStartDate(startDate);
+        cardKey.setEndDate(endDate);
+        System.out.println(cardKey);
+        
+        SecretKeyProvider keyProvider = new SecretKeyProviderImpl();
+        String cardString = keyProvider.encodeCard(cardKey);
+       
+        CardKey decodedCardKey = keyProvider.decodeCard(cardString);
+            
+        } 
+        catch (Exception ex) {
             LOG.error("JUST SAYING HELLO ERROR MESSAGE - the following stack trace is deliberate: ", ex);
         }
     }
