@@ -75,6 +75,12 @@ public class BankApiImpl implements BankApi {
 
     @Override
     public CreditCard createNewCreditCard(Account account) {
+       CreditCard card = new CreditCard();
+       
+       
+       
+       
+        
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
