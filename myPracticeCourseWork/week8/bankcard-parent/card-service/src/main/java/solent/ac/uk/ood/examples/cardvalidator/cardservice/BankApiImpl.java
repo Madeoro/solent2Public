@@ -77,11 +77,17 @@ public class BankApiImpl implements BankApi {
     public CreditCard createNewCreditCard(Account account) {
        CreditCard card = new CreditCard();
        
+       card.getName();
+       card.getCardnumber();
+       card.getCvv();
+       card.getIssueNumber();
+       card.getIndividualAccountIdentifier();
+       card.getIssuerIdentificationNumber();
+       card.getEndDate();
        
-       
-       
+       return card;
         
-        throw new UnsupportedOperationException("Not supported yet."); 
+       // throw new UnsupportedOperationException("Not supported yet."); 
     }
 
 }
